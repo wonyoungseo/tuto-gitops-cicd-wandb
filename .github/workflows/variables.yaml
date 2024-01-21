@@ -5,8 +5,6 @@ on: [push]
 jobs:
   Explore-variables:
     runs-on: ubuntu-latest
-
-      COMMITER: ${{
     steps:
       - name: see payload
         run: echo "PAYLOAD:\n${PAYLOAD}\n"
