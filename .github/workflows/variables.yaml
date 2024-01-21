@@ -1,0 +1,13 @@
+name: DEMO Variables
+run-name: ${{ github.actor }}'s test on Github Actions Variables
+
+on: [push]
+jobs:
+  Explore variables
+  runs-on: ubuntu-latest
+  env:
+    PAYLOAD: ${{ toJSON(github.event) }}
+  steps:
+    - name: see payload
+      run: |
+        echo "PAYLOAD: \n${PAYLOAD}\n"
