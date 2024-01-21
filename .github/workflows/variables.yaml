@@ -3,7 +3,7 @@ run-name: ${{ github.actor }}'s test on Github Actions Variables
 
 on: [push]
 jobs:
-  Explore variables
+  Explore variables:
   runs-on: ubuntu-latest
   env:
     PAYLOAD: ${{ toJSON(github.event) }}
