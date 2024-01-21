@@ -5,9 +5,15 @@ on: [push]
 jobs:
   Explore-variables:
     runs-on: ubuntu-latest
-    env:
-      PAYLOAD: ${{ toJSON(github.event) }}
+
+      COMMITER: ${{
     steps:
       - name: see payload
-        run: |
-          echo "PAYLOAD: \n${PAYLOAD}\n"
+        run: echo "PAYLOAD:\n${PAYLOAD}\n"
+        env:
+          PAYLOAD: ${{ toJSON(github.event) }}
+      - name: print something from the payload
+        run: echo "$pusher($pusher_email) pushed this"
+        env:
+          pusher_name: ${{ github.envent.pusher.name }}
+          pusher_email: ${{ github.envent.pusher.name }}
