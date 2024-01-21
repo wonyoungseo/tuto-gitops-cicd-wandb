@@ -14,4 +14,4 @@ jobs:
         run: echo "$pusher_name ($pusher_email) pushed this"
         env:
           pusher_name: ${{ github.event.pusher.name }}
-          pusher_email: ${{ github.event.pusher.name }} g
+          pusher_email: ${{ github.event.pusher.email }}
