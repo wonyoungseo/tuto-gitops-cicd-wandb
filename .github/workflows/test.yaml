@@ -1,0 +1,37 @@
+name: DEMO Unit & Smoke Tests - mamba
+on:
+  # trigger on pull requests and run only on the specific paths
+  pull_request:
+    paths:
+      - test-example/**
+
+  workflow_dispatch:
+
+
+# create map of default settings that will apply to ALL jobs in the workflow
+defaults:
+  run:
+    shell: bash -el {0}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Copy Repository Contents
+        uses: actions/checkout@main
+
+      - name: Install Conda environment with Micromamba
+        uses: mamba-org/provision-with-micromamba@main
+        with:
+          environment-file: test-example/conda-environment.yaml
+          environment-name: course
+          cache-env: true
+          cache-downloads: true
+
+      - run: |
+          micromamba activate course
+          pip install -U pytest
+          pytest test-example
+        env:
+          WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
