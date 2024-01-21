@@ -1,4 +1,4 @@
-name: [DEMO] trigger
+name: DEMO trigger
 
 on:
   push:
